@@ -37,10 +37,10 @@ def main(
     save_history: bool = typer.Option(False, "--save-history", "-s", help="Save conversation history to file")
 ):
     """
-    Start the Basic Agent with optional model selection
+    Start the Offline Code Assistant with optional model selection
     """
     console.print(Panel.fit(
-        "[bold blue]Basic Agent[/bold blue]\n"
+        "[bold blue]Offline Code Assistant[/bold blue]\n"
         "[italic]Your offline coding assistant[/italic]",
         border_style="blue"
     ))
@@ -91,7 +91,7 @@ def run_interactive_loop(llm_manager, project_analyzer, code_generator, project_
     from prompt_toolkit.history import FileHistory
     from prompt_toolkit.auto_suggest import AutoSuggestFromHistory
     
-    history_file = os.path.join(os.path.expanduser("~"), ".basic_agent_history")
+    history_file = os.path.join(os.path.expanduser("~"), ".offline_assistant_history")
     session = PromptSession(
         history=FileHistory(history_file),
         auto_suggest=AutoSuggestFromHistory(),
@@ -109,17 +109,17 @@ def run_interactive_loop(llm_manager, project_analyzer, code_generator, project_
         
         # Write header to the file
         with open(conversation_file, 'w') as f:
-            f.write(f"# Basic Agent Conversation - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            f.write(f"# Offline Code Assistant Conversation - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             f.write(f"Model: {llm_manager.model_name}\n")
             f.write(f"Project: {os.path.basename(os.path.abspath(project_path))}\n\n")
             f.write("---\n\n")
     
     while True:
         try:
-            user_input = session.prompt("\n[basic-agent] > ")
+            user_input = session.prompt("\n[offline-assistant] > ")
             
             if user_input.lower() in ("exit", "quit"):
-                console.print("[bold]Exiting Basic Agent. Goodbye![/bold]")
+                console.print("[bold]Exiting Offline Code Assistant. Goodbye![/bold]")
                 break
             
             if user_input.strip() == "":
@@ -156,7 +156,7 @@ def run_interactive_loop(llm_manager, project_analyzer, code_generator, project_
                     
                     # Write header to the file
                     with open(conversation_file, 'w') as f:
-                        f.write(f"# Basic Agent Conversation - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+                        f.write(f"# Offline Code Assistant Conversation - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
                         f.write(f"Model: {llm_manager.model_name}\n")
                         f.write(f"Project: {os.path.basename(os.path.abspath(project_path))}\n\n")
                         f.write("---\n\n")
@@ -170,7 +170,7 @@ def run_interactive_loop(llm_manager, project_analyzer, code_generator, project_
                         
                         # Write existing history to the new file
                         with open(conversation_file, 'w') as f:
-                            f.write(f"# Basic Agent Conversation - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+                            f.write(f"# Offline Code Assistant Conversation - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
                             f.write(f"Model: {llm_manager.model_name}\n")
                             f.write(f"Project: {os.path.basename(os.path.abspath(project_path))}\n\n")
                             f.write("---\n\n")
@@ -190,7 +190,7 @@ def run_interactive_loop(llm_manager, project_analyzer, code_generator, project_
             try:
                 input()
             except KeyboardInterrupt:
-                console.print("[bold]Exiting Basic Agent. Goodbye![/bold]")
+                console.print("[bold]Exiting Offline Code Assistant. Goodbye![/bold]")
                 break
         except Exception as e:
             console.print(f"[bold red]Error: {str(e)}[/bold red]")
@@ -200,7 +200,7 @@ def save_conversation(file_path, conversation_history):
     try:
         # Write header and conversation content to the file
         with open(file_path, 'w') as f:
-            f.write(f"# Basic Agent Conversation - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
+            f.write(f"# Offline Code Assistant Conversation - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n\n")
             
             # Write each message in the conversation history
             for role, content in conversation_history:
@@ -347,7 +347,7 @@ def generate_code(code_generator, prompt, project_path, save_history=False, conv
 def show_help():
     """Show help information"""
     help_text = """
-    [bold]Basic Agent Commands:[/bold]
+    [bold]Offline Code Assistant Commands:[/bold]
     
     analyze <file>  - Analyze a specific file in the current project
     repo <folder>   - Analyze a folder from the parent directory
