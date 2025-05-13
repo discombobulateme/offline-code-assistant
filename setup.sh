@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Basic Agent setup script
+# Offline Code Assistant setup script
 
-echo "Setting up Basic Agent..."
+echo "Setting up Offline Code Assistant..."
 
 # Get the directory where this script is located
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
@@ -49,13 +49,13 @@ pip3 install -r requirements.txt
 
 # Make scripts executable
 chmod +x run.py
-chmod +x basic-agent.sh
+chmod +x offline-assistant.sh
 chmod +x analyze-repo.sh
 chmod +x analyze-specific.sh
 
 echo "Setup complete!"
 echo ""
-echo "To run Basic Agent, use: ./basic-agent.sh"
+echo "To run Offline Code Assistant, use: ./offline-assistant.sh"
 
 # Check for Ollama models
 echo ""
