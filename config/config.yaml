@@ -1,0 +1,35 @@
+# Basic Agent Configuration
+
+# LLM Settings
+models:
+  default: "deepseek-r1"  # Default model to use
+  available:
+    - name: "deepseek-r1"
+      system_prompt: "You are a helpful coding assistant. You help users write code for embedded systems and other software projects when offline."
+      temperature: 0.7
+      max_tokens: 4000
+    - name: "llama3.1"
+      system_prompt: "You are an AI programming assistant. You assist users with writing code, designing software architecture, and solving programming problems."
+      temperature: 0.8
+      max_tokens: 4000
+    - name: "mistral"
+      system_prompt: "You are an expert coding assistant. Help the user write high-quality code and solve programming challenges."
+      temperature: 0.7
+      max_tokens: 4000
+
+# Project settings
+project:
+  ignored_directories:
+    - ".git"
+    - "venv"
+    - "__pycache__"
+    - "node_modules"
+  code_extensions:
+    - ".py"
+    - ".c"
+    - ".cpp"
+    - ".h"
+    - ".js"
+    - ".html"
+    - ".css"
+    - ".md" 
